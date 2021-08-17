@@ -1,0 +1,40 @@
+#Python - versão 3.8 (Anaconda - Thonny (3.7))'''
+print("Midoria o que voce esta fazendo?")
+print("Palmeiras sem mundial")#Declarar e utilizar uma variável
+cpf = "123456789-25"
+preco = 158.94#snake_casevalor_parcela= preco / 10#Para exibir, utilizar f-stringprint(f'Para {cpf} o preço R$ {preco} parcelado é: R${valor_parcela}')
+#Ler dados do usuário pelo consolenome = input('Informe seu nome:')
+#Coloca o texto dentro de nome todo em letras
+maiusculasnome = nome.upper()print(f'Ola {nome}!')
+#Ler valores numéricosnum1 = int(input("INforme numero 1:"))
+num2 = int(input('Informe numero 2:'))
+soma = num1 + num2
+print(f'O resultado de {num1}+{num2} é: {soma}')
+#Estruturas de decisãopreco_lanche = 15
+if preco_lanche == 5:  print('Coxinha do Wendell!')
+elif preco_lanche == 15:  
+print('Lanche do Thales!')
+elif preco_lanche == 12:
+print('Lanche Davi!')else:
+print('Não conhe;co esse preço!')
+#Estruturas de repetição#
+while 
+import randomsegredo = random.randint(0,100)chute
+= random.randint(0,100)total_de_chutes = 1while chute !=
+segredo:  chute = 
+random.randint(0,100)
+print(f'Nosso chute: {chute}')
+total_de_chutes = total_de_chutes + 1
+print(f'Acertou com {total_de_chutes} chutes')
+'''#Any Sena Random Number Generator#Cria uma lista vazianumeros = []
+#Para sortar os numerosimport randomjogo = input("qual jogo você quer sortear?").lower()
+if jogo == 'mega-sena':
+  total_de_dezenas = 6  menor_valor = 1  maior_valor = 60elif jogo == 'quina':
+  total_de_dezenas = 5  menor_valor = 1  maior_valor = 80elif jogo == 'lotofacil':
+  total_de_dezenas = 15  menor_valor = 1  maior_valor = 25else:
+  total_de_dezenas = 50  menor_valor = 0  maior_valor = 99contador = 1while contador <= total_de_dezenas:
+  numero_sorteado = random.randint(menor_valor, maior_valor)
+  if numero_sorteado not in numeros:
+    numeros.append(numero_sorteado)
+    contador = contador + 1#Coloca os números em ordemnumeros.sort()
+print(f'Para o jogo {jogo}:\nNumeros gerados: {numeros}')
