@@ -1,0 +1,64 @@
+#BlackJack é para fracos - Aqui é jogo de 21 do Mickey!
+import requests
+import random
+#Função que pega um baralho
+def pegar_baralho():
+  URL = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1'
+  resposta = requests.get(URL)
+  return resposta.json()['deck_id']
+#Função que pega uma carta
+def comprar_uma_carta(baralho):
+  URL = f'https://deckofcardsapi.com/api/deck/{baralho}/draw/?count=1'
+  resposta = requests.get(URL)
+  return resposta.json()['cards'][0]['value']
+#Converte as cartas para valores numéricos
+def converter_carta_para_valor(carta):
+  if carta == 'ACE':
+    return 1
+  #elif carta == 'KING' or carta == 'QUEEN' or carta == 'JACK':
+  elif carta in ['KING', 'QUEEN', 'JACK']:
+    return 10
+  else:
+    return int(carta)
+#Função que avalia o final do jogo
+def avaliar_final(jogador, cpu):
+  print('**************')
+  print('Final do Jogo:')
+  print('**************')
+  print(f'Jogador: {jogador}')
+  print(f'CPU: {cpu}')
+  if (jogador > 21 and cpu > 21) or (jogador == cpu):
+    print('EMPATE')
+  elif (jogador > 21) or (cpu > jogador and cpu <= 21):
+    print("CPU GANHOU!")
+  else:
+    print("JOGADOR GANHOU!")
+#Lógica Principal
+meu_baralho = pegar_baralho()
+jogador = 0
+continuar = True
+while continuar:
+  print(f'Jogador: {jogador}')
+  comprar = input("Quer carta (S/N)?").lower() == 's'
+  if comprar:
+    carta = comprar_uma_carta(meu_baralho)
+    print(f'Carta Sacada:{carta}')
+    jogador = jogador + converter_carta_para_valor(carta)
+  if not comprar or jogador > 21:
+    continuar = False
+cpu = 0
+continuar = True
+while continuar:
+  print(f'CPU: {cpu}')
+  #Lógica do computador
+  if cpu < (21 - random.randint(0,4)):
+    comprar = True
+  else:
+    comprar = False
+  if comprar:
+    carta = comprar_uma_carta(meu_baralho)
+    print(f'Carta Sacada:{carta}')
+    cpu = cpu + converter_carta_para_valor(carta)
+  if not comprar or cpu > 21:
+    continuar = False
+avaliar_final(jogador, cpu)
